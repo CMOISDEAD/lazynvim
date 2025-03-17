@@ -18,6 +18,7 @@ return {
           kind = "tab",
         })
       end,
+      desc = "Neogit",
     },
   },
 }
