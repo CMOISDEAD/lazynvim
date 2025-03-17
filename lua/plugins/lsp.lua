@@ -14,4 +14,12 @@ return {
       })
     end,
   },
+  {
+    "neovim/nvim-lspconfig",
+    event = "LazyFile",
+    opts = function(_, opts)
+      opts.diagnostics.signs = true
+      return opts
+    end,
+  },
 }
