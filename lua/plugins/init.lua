@@ -15,7 +15,8 @@ return {
   {
     "craftzdog/solarized-osaka.nvim",
     opts = {
-      transparent = false,
+      transparent = true,
+      terminal_colors = true,
       styles = {
         comments = { italic = true },
         keywords = { italic = true },
