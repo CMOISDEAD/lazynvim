@@ -12,19 +12,6 @@ return {
       },
     },
   },
-  {
-    "craftzdog/solarized-osaka.nvim",
-    opts = {
-      transparent = true,
-      terminal_colors = true,
-      styles = {
-        comments = { italic = true },
-        keywords = { italic = true },
-        sidebars = "dark",
-        floats = "dark",
-      },
-    },
-  },
 
   {
     "mrjones2014/smart-splits.nvim",

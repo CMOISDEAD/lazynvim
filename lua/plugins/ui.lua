@@ -69,20 +69,38 @@ return {
     },
   },
 
+  { "ellisonleao/gruvbox.nvim", priority = 1000, config = true, opts = {
+    transparent_mode = true,
+  } },
+
+  {
+    "craftzdog/solarized-osaka.nvim",
+    opts = {
+      transparent = true,
+      terminal_colors = true,
+      styles = {
+        comments = { italic = true },
+        keywords = { italic = true },
+        sidebars = "dark",
+        floats = "dark",
+      },
+    },
+  },
+
   {
     "b0o/incline.nvim",
-    dependencies = { "craftzdog/solarized-osaka.nvim" },
+    dependencies = { "ellisonleao/gruvbox.nvim" },
     event = "BufReadPre",
     priority = 1200,
     config = function()
-      local colors = require("solarized-osaka.colors").setup()
+      local colors = require("gruvbox").palette
       require("incline").setup({
         hide = { cursorline = false },
         window = { margin = { vertical = 0, horizontal = 1 } },
         highlight = {
           groups = {
-            InclineNormal = { guibg = colors.base02, guifg = colors.base2 },
-            InclineNormalNC = { guifg = colors.violet500, guibg = colors.base03 },
+            InclineNormal = { guibg = colors.dark0_soft, guifg = colors.light0 },
+            InclineNormalNC = { guifg = colors.bright_yellow, guibg = colors.dark0_soft },
           },
         },
         render = function(props)
@@ -146,19 +164,108 @@ return {
       dashboard = {
         preset = {
           header = [[
-	                -.__     `--._   `-._  `-.  `. `. : .' .'  .-'  _.-'   _.--'     __.--'  
-          __    `--.__    `--._  `-._ `-. `. :/ .' .-' _.-'  _.--'    __.--'    __
-          `--..__   `--.__   `--._ `-._`-.`_=_'.-'_.-' _.--'   __.--'   __..--'  
-        --..__   `--..__  `--.__  `--._`-q(-_-)p-'_.--'  __.--'  __..--'   __..--
-              ``--..__  `--..__ `--.__ `-'_) (_`-' __.--' __..--'  __..--''      
-        ...___        ``--..__ `--..__`--/__/  --'__..--' __..--''        ___... 
-              ```---...___    ``--..__`_(<_   _/)_'__..--''    ___...---'''      
-          ```-----....._____```---...___(____|_/__)___...---'''_____.....-----''' 
-                                            
-                                            
-                                            
-        "God has a destiny for everyone"
-        ]],
+            :h-                                  Nhy`               
+           -mh.                           h.    `Ndho               
+           hmh+                          oNm.   oNdhh               
+          `Nmhd`                        /NNmd  /NNhhd               
+          -NNhhy                      `hMNmmm`+NNdhhh               
+          .NNmhhs              ```....`..-:/./mNdhhh+               
+           mNNdhhh-     `.-::///+++////++//:--.`-/sd`               
+           oNNNdhhdo..://++//++++++/+++//++///++/-.`                
+      y.   `mNNNmhhhdy+/++++//+/////++//+++///++////-` `/oos:       
+ .    Nmy:  :NNNNmhhhhdy+/++/+++///:.....--:////+++///:.`:s+        
+ h-   dNmNmy oNNNNNdhhhhy:/+/+++/-         ---:/+++//++//.`         
+ hd+` -NNNy`./dNNNNNhhhh+-://///    -+oo:`  ::-:+////++///:`        
+ /Nmhs+oss-:++/dNNNmhho:--::///    /mmmmmo  ../-///++///////.       
+  oNNdhhhhhhhs//osso/:---:::///    /yyyyso  ..o+-//////////:/.      
+   /mNNNmdhhhh/://+///::://////     -:::- ..+sy+:////////::/:/.     
+     /hNNNdhhs--:/+++////++/////.      ..-/yhhs-/////////::/::/`    
+       .ooo+/-::::/+///////++++//-/ossyyhhhhs/:///////:::/::::/:    
+       -///:::::::////++///+++/////:/+ooo+/::///////.::://::---+`   
+       /////+//++++/////+////-..//////////::-:::--`.:///:---:::/:   
+       //+++//++++++////+++///::--                 .::::-------::   
+       :/++++///////////++++//////.                -:/:----::../-   
+       -/++++//++///+//////////////               .::::---:::-.+`   
+       `////////////////////////////:.            --::-----...-/    
+        -///://////////////////////::::-..      :-:-:-..-::.`.+`    
+         :/://///:///::://::://::::::/:::::::-:---::-.-....``/- -   
+           ::::://::://::::::::::::::----------..-:....`.../- -+oo/ 
+            -/:::-:::::---://:-::-::::----::---.-.......`-/.      ``
+           s-`::--:::------:////----:---.-:::...-.....`./:          
+          yMNy.`::-.--::..-dmmhhhs-..-.-.......`.....-/:`           
+         oMNNNh. `-::--...:NNNdhhh/.--.`..``.......:/-              
+        :dy+:`      .-::-..NNNhhd+``..`...````.-::-`                
+                        .-:mNdhh:.......--::::-`                    
+                           yNh/..------..`                          
+          ]],
+          keys = {},
+        },
+        sections = {
+          { section = "header" },
+          -- { section = "keys", gap = 1, padding = 1 },
+          {
+            pane = 2,
+            icon = " ",
+            desc = "Browse Repo",
+            padding = 1,
+            key = "b",
+            action = function()
+              Snacks.gitbrowse()
+            end,
+          },
+          function()
+            local in_git = Snacks.git.get_root() ~= nil
+            local cmds = {
+              {
+                title = "Notifications",
+                cmd = "gh notify -s -a -n5",
+                action = function()
+                  vim.ui.open("https://github.com/notifications")
+                end,
+                key = "n",
+                icon = " ",
+                height = 5,
+                enabled = true,
+              },
+              {
+                title = "Open Issues",
+                cmd = "gh issue list -L 3",
+                key = "i",
+                action = function()
+                  vim.fn.jobstart("gh issue list --web", { detach = true })
+                end,
+                icon = " ",
+                height = 7,
+              },
+              {
+                icon = " ",
+                title = "Open PRs",
+                cmd = "gh pr list -L 3",
+                key = "P",
+                action = function()
+                  vim.fn.jobstart("gh pr list --web", { detach = true })
+                end,
+                height = 7,
+              },
+              {
+                icon = " ",
+                title = "Git Status",
+                cmd = "git --no-pager diff --stat -B -M -C",
+                height = 10,
+              },
+            }
+            return vim.tbl_map(function(cmd)
+              return vim.tbl_extend("force", {
+                pane = 2,
+                section = "terminal",
+                enabled = in_git,
+                padding = 1,
+                ttl = 5 * 60,
+                indent = 3,
+              }, cmd)
+            end, cmds)
+          end,
+          { section = "startup" },
         },
       },
     },
