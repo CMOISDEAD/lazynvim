@@ -21,4 +21,8 @@ return {
       desc = "Neogit",
     },
   },
+  opts = {
+    -- HACK: temporal, related to #1691, should wait until neovim 0.12 release
+    disable_signs = true,
+  },
 }
