@@ -40,10 +40,14 @@ return {
         auto_suggestions = false,
       },
       provider = "copilot",
-      copilot = {
-        model = "claude-3.7-sonnet",
-        temperature = 0,
-        max_tokens = 8192,
+      providers = {
+        copilot = {
+          extra_request_max_body = {
+            max_tokens = 8192,
+            temperature = 0,
+          },
+          model = "claude-3.7-sonnet",
+        },
       },
     },
     -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
@@ -57,6 +61,7 @@ return {
       {
         -- support for image pasting
         "HakonHarnes/img-clip.nvim",
+        enabled = false,
         event = "VeryLazy",
         opts = {
           -- recommended settings

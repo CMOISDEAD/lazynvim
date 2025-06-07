@@ -70,17 +70,34 @@ return {
   },
 
   {
-    "ellisonleao/gruvbox.nvim",
+    "maxmx03/fluoromachine.nvim",
+    lazy = false,
     priority = 1000,
-    config = true,
+    config = function()
+      local fm = require("fluoromachine")
+      fm.setup({
+        glow = true,
+        theme = "fluoromachine",
+        transparent = false,
+      })
+    end,
+  },
+
+  {
+    "EdenEast/nightfox.nvim",
     opts = {
-      transparent_mode = true,
+      transparent = false,
+      dim_inactive = false,
     },
   },
 
   {
-    "sainnhe/everforest",
-    priority = 100,
+    "ellisonleao/gruvbox.nvim",
+    priority = 1000,
+    config = true,
+    opts = {
+      transparent_mode = false,
+    },
   },
 
   {
