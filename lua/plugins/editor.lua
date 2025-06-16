@@ -3,24 +3,24 @@ return {
     "nvim-orgmode/orgmode",
     config = function()
       require("orgmode").setup({
-        org_agenda_files = "~/Documents/org-files/**/*",
-        org_default_notes_file = "~/Documents/org-files/refile.org",
-        org_todo_keywords = { "TODO(t)", "|", "DONE(d)" },
+        org_agenda_files = "~/org/**/*",
+        org_default_notes_file = "~/org/refile.org",
+        org_todo_keywords = { "(t) TODO", "|", "(d) DONE" },
         org_capture_templates = {
           t = {
             description = "Todo",
             template = "* TODO %?\n%U",
-            target = "~/Documents/org-files/todo.org",
+            target = "~/org/todo.org",
           },
           j = {
             description = "Journal",
             template = "\n*** %<%Y-%m-%d> %<%A>\n**** %U\n\n%?",
-            target = "~/Documents/org-files/journal.org",
+            target = "~/org/journal.org",
           },
           n = {
             description = "Notes",
             template = "* %?\n %u",
-            target = "~/Documents/org-files/notes.org",
+            target = "~/org/org-files/notes.org",
           },
         },
       })

@@ -44,10 +44,7 @@ return {
     "folke/noice.nvim",
     opts = function(_, opts)
       table.insert(opts.routes, {
-        filter = {
-          event = "notify",
-          find = "No information available",
-        },
+        filter = { event = "notify", find = "No information available" },
         opts = { skip = true },
       })
 
@@ -70,28 +67,6 @@ return {
   },
 
   {
-    "maxmx03/fluoromachine.nvim",
-    lazy = false,
-    priority = 1000,
-    config = function()
-      local fm = require("fluoromachine")
-      fm.setup({
-        glow = true,
-        theme = "fluoromachine",
-        transparent = false,
-      })
-    end,
-  },
-
-  {
-    "EdenEast/nightfox.nvim",
-    opts = {
-      transparent = false,
-      dim_inactive = false,
-    },
-  },
-
-  {
     "ellisonleao/gruvbox.nvim",
     priority = 1000,
     config = true,
@@ -101,18 +76,15 @@ return {
   },
 
   {
-    "craftzdog/solarized-osaka.nvim",
-    opts = {
-      transparent = true,
-      terminal_colors = true,
-      styles = {
-        comments = { italic = true },
-        keywords = { italic = true },
-        sidebars = "dark",
-        floats = "dark",
-      },
+    "zenbones-theme/zenbones.nvim",
+    lazy = false,
+    priority = 1000,
+    dependencies = {
+      "rktjmp/lush.nvim",
     },
   },
+
+  { "datsfilipe/vesper.nvim" },
 
   {
     "b0o/incline.nvim",

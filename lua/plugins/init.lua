@@ -1,19 +1,5 @@
 return {
   {
-    "echasnovski/mini.files",
-    keys = {
-      {
-        "<tab>",
-        function()
-          if not require("mini.files").close() then
-            require("mini.files").open()
-          end
-        end,
-      },
-    },
-  },
-
-  {
     "mrjones2014/smart-splits.nvim",
     build = "./kitty/install-kittens.bash",
     opts = {
