@@ -3,3 +3,5 @@
 -- Add any additional options here
 
 vim.o.wrap = true
+vim.o.cursorline = true
+vim.o.cursorcolumn = true
