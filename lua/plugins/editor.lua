@@ -9,7 +9,7 @@ return {
   },
   {
     "MeanderingProgrammer/render-markdown.nvim",
-    dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.icons" },
+    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-mini/mini.icons" },
     opts = {},
   },
   {
@@ -58,8 +58,8 @@ return {
       require("xeno").new_theme("my-theme", {
         base = "#1D1B16",
         accent = "#DFBFBB",
+        transparent = true,
       })
-      -- vim.cmd("colorscheme my-theme")
     end,
   },
 }

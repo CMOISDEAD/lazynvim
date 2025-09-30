@@ -3,6 +3,6 @@ require("xeno").setup({
   accent = "#DFBFBB",
   variation = 0.0,
   contrast = 0.0,
-  transparent = false,
+  transparent = true,
 })
 vim.g.colors_name = "my-theme"
